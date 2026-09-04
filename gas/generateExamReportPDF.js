@@ -1,6 +1,6 @@
 const SPREADSHEET_ID = "1AzvCp6NUZJ_xch5911sL7euOqy-Xi4wE4x18Bks0vqc";
-const TEST_CAREER_CENTER_MAIL = "eduard@hsc.ac.jp,hsc-shoumei@hsc.ac.jp";
-const PRODUCTION_CAREER_CENTER_MAIL = "syushoku@ucs-hiroshima.ac.jp,hsc-shoumei@hsc.ac.jp";
+const TEST_CAREER_CENTER_MAIL = "eduard@hsc.ac.jp,hsc-shoumei@hsc.ac.jp,shoumei-system@hsc.ac.jp";
+const PRODUCTION_CAREER_CENTER_MAIL = "syushoku@ucs-hiroshima.ac.jp,hsc-shoumei@hsc.ac.jp,shoumei-system@hsc.ac.jp";
 
 function generatePdfsFromFormResponses(e) {
   processExamReport_(e, {
