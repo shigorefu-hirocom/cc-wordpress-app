@@ -6,7 +6,12 @@ add_shortcode('certificate-form', function () {
         $gas_url = 'https://script.google.com/macros/s/AKfycbw-z6zP0K774d9jFyxE5noYQcelOfNJxCGxe71C312EFEL-_49yl5yzfqt7KjKFdxxs6A/exec';
 
         $payload = certificate_sanitize_post_data($_POST);
-        unset($payload['certificate_form_submit']);
+        unset($payload['certificate_form_submit'], $payload['担任名']);
+        if (($payload['使用目的'] ?? '') !== '就職用' && isset($payload['受取方法'])) {
+            $payload['受取方法'] = array_values(array_filter((array) $payload['受取方法'], function ($method) {
+                return $method !== 'PDF（メール送付）';
+            }));
+        }
         $payload['申請種別'] = '証明書発行申請';
 
         $request_args = [
@@ -866,9 +871,6 @@ add_shortcode('certificate-form', function () {
                 <label>受験先企業名</label>
                 <input type="text" name="受験先企業名">
 
-                <label>担任名</label>
-                <input type="text" name="担任名">
-
                 <label>書類提出日</label>
                 <input type="date" name="書類提出日">
             </fieldset>
@@ -886,7 +888,7 @@ add_shortcode('certificate-form', function () {
                 <label>受取方法</label>
                 <div class="checkbox-card-group">
                     <label><input type="checkbox" name="受取方法[]" value="紙（窓口受取）">紙（窓口受取）</label>
-                    <label><input type="checkbox" name="受取方法[]" value="PDF（メール送付）">PDF（メール送付）</label>
+                    <label id="certificate_pdf_receive_option" style="display: none;"><input type="checkbox" name="受取方法[]" value="PDF（メール送付）" disabled>PDF（メール送付）</label>
                 </div>
 
                 <label>備考</label>
@@ -955,6 +957,7 @@ add_shortcode('certificate-form', function () {
         const purposeRows = form.querySelectorAll('[data-purpose-row]');
         const documentsFields = document.getElementById('certificate_documents_fields');
         const receiveFields = document.getElementById('certificate_receive_fields');
+        const pdfReceiveOption = document.getElementById('certificate_pdf_receive_option');
         const employmentNote = document.getElementById('certificate_employment_note');
         const employmentFields = document.getElementById('certificate_employment_fields');
         const otherFields = document.getElementById('certificate_other_fields');
@@ -1140,6 +1143,8 @@ add_shortcode('certificate-form', function () {
 
             setSectionVisibility(documentsFields, Boolean(purpose));
             setSectionVisibility(receiveFields, Boolean(purpose));
+            setSectionVisibility(pdfReceiveOption, purpose === '就職用');
+            pdfReceiveOption.style.display = purpose === '就職用' ? 'inline-flex' : 'none';
             setSectionVisibility(employmentNote, purpose === '就職用');
             setSectionVisibility(employmentFields, purpose === '就職用');
             setSectionVisibility(otherFields, purpose === 'その他');
@@ -1246,7 +1251,6 @@ add_shortcode('certificate-form', function () {
             addRow('使用目的', getFieldValue('使用目的'));
             addRow('選択した証明書', selectedDocumentsInput.value);
             addRow('受験先企業名', getFieldValue('受験先企業名'));
-            addRow('担任名', getFieldValue('担任名'));
             addRow('書類提出日', getFieldValue('書類提出日'));
             addRow('使用目的、提出先など', getFieldValue('使用目的、提出先など'));
             addRow('受取方法', getCheckedValues('受取方法[]').join('\n'));
