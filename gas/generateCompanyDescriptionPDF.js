@@ -3,8 +3,8 @@ const COMPANY_DESCRIPTION_FORM_RESPONSES_SHEET_NAME = "DB_訪問説明会";
 const COMPANY_DESCRIPTION_TEMPLATE_SHEET_NAME = "訪問説明会報告書";
 const COMPANY_DESCRIPTION_PDF_FOLDER_ID = "1gj1OgWrn1JsONHFkNLrpu-gf9oGL704F";
 
-const COMPANY_DESCRIPTION_TEST_CAREER_CENTER_MAIL = "eduard@hsc.ac.jp";
-const COMPANY_DESCRIPTION_PRODUCTION_CAREER_CENTER_MAIL = "syushoku@ucs-hiroshima.ac.jp";
+const COMPANY_DESCRIPTION_TEST_CAREER_CENTER_MAIL = "eduard@hsc.ac.jp,hsc-shoumei@hsc.ac.jp,shoumei-system@hsc.ac.jp";
+const COMPANY_DESCRIPTION_PRODUCTION_CAREER_CENTER_MAIL = "syushoku@ucs-hiroshima.ac.jp,hsc-shoumei@hsc.ac.jp,shoumei-system@hsc.ac.jp";
 
 function generateCompanyDescriptionPdfsFromFormResponses(e) {
   processCompanyDescriptionReport_(e, {

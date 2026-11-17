@@ -118,8 +118,8 @@ flowchart LR
 
 就職センター宛メールは、誤送信防止のためデフォルトでテストアドレスへ送信されます。
 
-- test: `eduard@hsc.ac.jp`
-- production: `syushoku@ucs-hiroshima.ac.jp`
+- test: `eduard@hsc.ac.jp`, `hsc-shoumei@hsc.ac.jp`, `shoumei-system@hsc.ac.jp`
+- production: `syushoku@ucs-hiroshima.ac.jp`, `hsc-shoumei@hsc.ac.jp`, `shoumei-system@hsc.ac.jp`
 
 Apps Script の Script Properties で `USE_PRODUCTION_CAREER_CENTER_MAIL` を `true` に設定すると production 宛になります。未設定、または `true` 以外の値の場合は test 宛です。
 

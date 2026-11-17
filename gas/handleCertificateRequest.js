@@ -1,7 +1,7 @@
 const CERTIFICATE_SPREADSHEET_ID = "1AzvCp6NUZJ_xch5911sL7euOqy-Xi4wE4x18Bks0vqc";
 const CERTIFICATE_FORM_RESPONSES_SHEET_NAME = "DB_証明書申請";
-const CERTIFICATE_TEST_CAREER_CENTER_MAIL = "eduard@hsc.ac.jp";
-const CERTIFICATE_PRODUCTION_CAREER_CENTER_MAIL = "syushoku@ucs-hiroshima.ac.jp";
+const CERTIFICATE_TEST_CAREER_CENTER_MAIL = "eduard@hsc.ac.jp,hsc-shoumei@hsc.ac.jp,shoumei-system@hsc.ac.jp";
+const CERTIFICATE_PRODUCTION_CAREER_CENTER_MAIL = "syushoku@ucs-hiroshima.ac.jp,hsc-shoumei@hsc.ac.jp,shoumei-system@hsc.ac.jp";
 
 function handleCertificateWebhook_(e) {
   try {
